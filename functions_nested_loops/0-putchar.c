@@ -1,23 +1,21 @@
-#include <stdio.h>  /* Header file needed for putchar */
+#include "main.h"
 
 /**
-* main - Entry point
-*
-* Description: Prints "_putchar" followed by a new line
-* Return: Always 0 (Success)
-*/
+ * main - Entry point
+ *
+ * Return: Always 0 (Success)
+ */
 int main(void)
 {
-putchar('_');  /* Prints '_' */
-putchar('p');  /* Prints 'p' */
-putchar('u');  /* Prints 'u' */
-putchar('t');  /* Prints 't' */
-putchar('c');  /* Prints 'c' */
-putchar('h');  /* Prints 'h' */
-putchar('a');  /* Prints 'a' */
-putchar('r');  /* Prints 'r' */
-putchar('\n'); /* Prints a new line */
+    _putchar('_');
+    _putchar('p');
+    _putchar('u');
+    _putchar('t');
+    _putchar('c');
+    _putchar('h');
+    _putchar('a');
+    _putchar('r');
+    _putchar('\n');
+    return (0);
+}
 
-return (0);    /* Program ends successfully */
-}
-}
