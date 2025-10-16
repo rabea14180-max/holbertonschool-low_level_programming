@@ -20,7 +20,7 @@ if (col == 0)
 _putchar(prod + '0');
 }
 else if (prod < 10)
-            {
+{
 _putchar(',');
 _putchar(' ');
 _putchar(' ');
