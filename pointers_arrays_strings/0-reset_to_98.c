@@ -1,21 +1,10 @@
-#include <stdio.h>
 #include "main.h"
 
 /**
- * main - tests the reset_to_98 function
- *
- * Return: 0 on success
+ * reset_to_98 - updates the value of an integer to 98
+ * @n: pointer to the integer to be updated
  */
-int main(void)
+void reset_to_98(int *n)
 {
-int number;
-
-number = 42;
-printf("Before: %d\n", number);
-
-reset_to_98(&number);
-
-printf("After: %d\n", number);
-
-return (0);
+*n = 98;
 }
