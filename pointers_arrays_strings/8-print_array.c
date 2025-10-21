@@ -1,19 +1,22 @@
-#include <unistd.h>
+#include <stdio.h>
 
 /**
- * _strlen - returns the length of a string
- * @s: pointer to the string
+ * print_array - prints n elements of an array of integers
+ * @a: pointer to the first element of the array
+ * @n: number of elements to print
  *
- * Return: length of the string
+ * Description: Prints the numbers separated by a comma and a space,
+ * in the same order as stored in the array, followed by a newline.
  */
-int _strlen(char *s)
+void print_array(int *a, int n)
 {
-int len = 0;
+int i;
 
-while (s[len] != '\0')
-len++;
-
-return (len);
+for (i = 0; i < n; i++)
+{
+printf("%d", a[i]);
+if (i != n - 1)
+printf(", ");
 }
-
+printf("\n");
 }
