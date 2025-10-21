@@ -3,16 +3,16 @@
 
 void reset_to_98(int *n)
 {
-    *n = 98;  // Update the value at the address pointed to by n
+    *n = 98;
 }
 
 int main()
 {
-    int number = 5;
-    printf("Before: %d\n", number);
+int number = 5;
+printf("Before: %d\n", number);
 
-    reset_to_98(&number);  // Pass the address of number
+reset_to_98(&number);
 
-    printf("After: %d\n", number);
-    return 0;
+printf("After: %d\n", number);
+return 0;
 }
