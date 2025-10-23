@@ -8,11 +8,11 @@
  */
 int main(void)
 {
-char *str;
-int len;
+char s1[98];
+char *ptr;
+int i;
 
-str = "My first strlen!";
-len = _strlen(str);
-printf("%d\n", len);
-return (0);
+for (i = 0; i < 98 - 1; i++)
+{
+s1[i] = '*';
 }
