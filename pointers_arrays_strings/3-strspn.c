@@ -19,7 +19,7 @@ a = accept;
 while (*a)
 {
 if (*s == *a)
-                break;
+break;
 a++;
 }
 if (*a == '\0')
@@ -28,6 +28,6 @@ count++;
 s++;
 }
 
+
 return (count);
 }
-
