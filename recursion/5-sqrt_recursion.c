@@ -1,5 +1,8 @@
 #include "main.h"
 
+/* Function prototype for the helper */
+int _sqrt_helper(int n, int i);
+
 /**
  * _sqrt_recursion - returns the natural square root of a number
  * @n: number to find the square root of
@@ -25,7 +28,7 @@ if (i * i > n)
 return (-1);
 
 if (i * i == n)
-return (i);
+return (i);Ù
 
 return (_sqrt_helper(n, i + 1));
 }
