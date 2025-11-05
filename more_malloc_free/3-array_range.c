@@ -24,6 +24,5 @@ return (NULL);
 
 for (i = 0; i < size; i++)
 arr[i] = min + i;
-
 return (arr);
 }
