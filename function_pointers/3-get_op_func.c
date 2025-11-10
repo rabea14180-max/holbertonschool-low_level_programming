@@ -19,9 +19,12 @@ op_t ops[] = {
 };
 int i = 0;
 
+if (s == NULL || s[1] != '\0')
+return (NULL);
+
 while (ops[i].op != NULL)
 {
-if (*(ops[i].op) == *s && *(ops[i].op + 1) == '\0')
+if (ops[i].op[0] == s[0])
 return (ops[i].f);
 i++;
 }
