@@ -1,5 +1,6 @@
-#ifndef LISTS.H
-#define LISTS.H
+#ifndef LISTS_H
+#define LISTS_H
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -10,7 +11,6 @@
  * @next: points to the next node
  *
  * Description: doubly linked list node structure
- * for Holberton/ALX project
  */
 typedef struct dlistint_s
 {
@@ -19,8 +19,7 @@ struct dlistint_s *prev;
 struct dlistint_s *next;
 } dlistint_t;
 
+
 size_t print_dlistint(const dlistint_t *h);
 
-
-
-#endif
+#endif /* LISTS_H */
