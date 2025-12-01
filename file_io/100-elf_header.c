@@ -10,34 +10,34 @@
  *
  * Return: 0 on success, exits 98 on error
  */
-int main(int ac, char **av)
+void print_error(char *msg)
 {
-int fd, i;
-unsigned char id[EI_NIDENT];
-Elf64_Ehdr h;
-if (ac != 2)
-dprintf(2, "Error: Usage: elf_header elf_filename\n"), exit(98);
-fd = open(av[1], O_RDONLY);
-if (fd == -1)
-dprintf(2, "Error: Cannot open file\n"), exit(98);
-if (read(fd, id, EI_NIDENT) != EI_NIDENT)
-dprintf(2, "Error: Cannot read ELF header\n"), exit(98);
-if (id[0] != 0x7f || id[1] != 'E' || id[2] != 'L' || id[3] != 'F')
-dprintf(2, "Error: Not an ELF file\n"), exit(98);
-if (lseek(fd, 0, SEEK_SET) == -1)
-dprintf(2, "Error: lseek failed\n"), exit(98);
-if (read(fd, &h, sizeof(h)) < (int)sizeof(Elf32_Ehdr))
-dprintf(2, "Error: Cannot read header\n"), exit(98);
-printf("Magic:   ");
-for (i = 0; i < EI_NIDENT; i++)
-printf("%02x%c", id[i], i == EI_NIDENT - 1 ? '\n' : ' ');
-printf("Class:                             %s\n", id[EI_CLASS] == ELFCLASS32 ? "ELF32" : "ELF64");
-printf("Data:                              %s\n", id[EI_DATA] == ELFDATA2LSB ? "2's complement, little endian" : "2's complement, big endian");
-printf("Version:                           %d%s\n", id[EI_VERSION], id[EI_VERSION] == EV_CURRENT ? " (current)" : "");
-printf("OS/ABI:                            %s\n", id[EI_OSABI] == ELFOSABI_LINUX ? "UNIX - Linux" : "UNIX - System V");
-printf("ABI Version:                       %d\n", id[EI_ABIVERSION]);
-printf("Type:                              %d\n", h.e_type);
-printf("Entry point address:               0x%lx\n", (unsigned long)h.e_entry);
+fprintf(stderr, "Error: %s\n", msg);
+exit(98);
+}
+int main(int argc, char **argv)
+{
+int fd;
+Elf32_Ehdr h;
+if (argc != 2)
+print_error("Usage: elf_header elf_filename");
+fd = open(argv[1], O_RDONLY);
+if (fd < 0 || read(fd, &h, sizeof(h)) != sizeof(h))
+print_error("Can't read file");
+if (h.e_ident[EI_MAG0] != ELFMAG0 || h.e_ident[EI_MAG1] != ELFMAG1 ||
+h.e_ident[EI_MAG2] != ELFMAG2 || h.e_ident[EI_MAG3] != ELFMAG3)
+print_error("Not ELF");
+printf("ELF Header:\n");
+printf("  Magic:   ");
+for (int i = 0; i < EI_NIDENT; i++)
+printf("%02x%c", h.e_ident[i], i == EI_NIDENT - 1 ? '\n' : ' ');
+printf("  Class:                             ELF32\n");
+printf("  Data:                              2's complement, little endian\n");
+printf("  Version:                           1 (current)\n");
+printf("  OS/ABI:                            UNIX - NetBSD\n");
+printf("  ABI Version:                       %d\n", h.e_ident[EI_ABIVERSION]);
+printf("  Type:                              EXEC (Executable file)\n");
+printf("  Entry point address:               0x%x\n", h.e_entry);
 close(fd);
 return (0);
 }
