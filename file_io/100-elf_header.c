@@ -3,7 +3,6 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <elf.h>
-
 /**
  * main - Displays information from the ELF header
  * @ac: Argument count
@@ -13,7 +12,7 @@
  */
 int main(int ac, char **av)
 {
-int fd, r, i;
+int fd, i;
 unsigned char id[EI_NIDENT];
 Elf64_Ehdr h;
 if (ac != 2)
@@ -29,7 +28,6 @@ if (lseek(fd, 0, SEEK_SET) == -1)
 dprintf(2, "Error: lseek failed\n"), exit(98);
 if (read(fd, &h, sizeof(h)) < (int)sizeof(Elf32_Ehdr))
 dprintf(2, "Error: Cannot read header\n"), exit(98);
-
 printf("Magic:   ");
 for (i = 0; i < EI_NIDENT; i++)
 printf("%02x%c", id[i], i == EI_NIDENT - 1 ? '\n' : ' ');
@@ -40,7 +38,6 @@ printf("OS/ABI:                            %s\n", id[EI_OSABI] == ELFOSABI_LINUX
 printf("ABI Version:                       %d\n", id[EI_ABIVERSION]);
 printf("Type:                              %d\n", h.e_type);
 printf("Entry point address:               0x%lx\n", (unsigned long)h.e_entry);
-
 close(fd);
 return (0);
 }
