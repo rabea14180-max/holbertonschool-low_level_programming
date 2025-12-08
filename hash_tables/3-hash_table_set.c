@@ -8,8 +8,7 @@
  *
  * Return: 1 on success, 0 on failure
  */
-int hash_table_set(hash_table_t *ht, const char *key, const char *value)
-{
+int hash_table_set(hash_table_t *ht, const char *key, const char *value){
 unsigned long int idx;
 hash_node_t *node, *tmp;
 char *value_dup;
@@ -27,8 +26,7 @@ return (0);
 
 free(tmp->value);
 tmp->value = value_dup;
-return (1);
-}
+return (1);}
 tmp = tmp->next;
 }
 node = malloc(sizeof(hash_node_t));
